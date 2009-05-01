@@ -7,6 +7,7 @@ jQuery.fontstack = {
     for (var i in selectors) {
       selector = selectors[i];
       var font_family_declaration = $(selector).eq(0).css('font-family').replace(/['"]/g, '');
+      console.log(font_family_declaration);
       $.fontstack.identifyStack(font_family_declaration);
     }
 
