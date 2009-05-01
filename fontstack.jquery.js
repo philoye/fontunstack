@@ -14,6 +14,7 @@ jQuery.fontstack = {
 	},
   
   identify: function(font_stacks) {
+
     
     for (var i in font_stacks) {
       var stack = font_stacks[i];
@@ -24,24 +25,23 @@ jQuery.fontstack = {
   
   identifyStack: function(stack) {
 
-    var numFonts = stack.length;
-    var last_resort = stack[numFonts -1];
+    var num_fonts = stack.length
+    var last_resort = stack[num_fonts -1];
     var baseline = "monospace";
-
-    // Use the monospace generic, unless it is specifed as the generic.
-    // If so, use sans-serif and add it to the stack as the new generic.
 
     // I need to test if no generic specified at all, that's when we should add one.
     if (last_resort == "monospace") {
       baseline = "sans-serif";
-      fonts.push(baseline);
+      stack.push(baseline);
     };
     
-    for (var i in stack) {
+		console.log(stack);
+    for (var i=0; i<num_fonts; i++) {
       font = stack[i];
-      if ($.fontstack.testFont(font)) {
-        console.log(font);
-        $("body").addClass(font.replace( /\s/g, "").toLowerCase());
+      
+      if ($.fontstack.testFont(font,baseline)) {
+        console.log("Found " + font + ", add body class and break");
+        $('body').addClass(font.replace( /\s/g, "").toLowerCase());
         break;
       }
         
@@ -50,6 +50,7 @@ jQuery.fontstack = {
   },
 	
 	testFont: function(requested_font, baseline_font) {
+    console.log("testing " + requested_font + " against " + baseline_font);
 		
 		// Insert test div offscreen
 		$('body').prepend('<span id="font_tester" style="font-family:' + baseline_font + '; font-size:72px;left:-10000px;position:absolute;top:-10000px;visibility:hidden;">mmmmmmmmmmmmmmmmmmmmmmmmmmmml</span>');

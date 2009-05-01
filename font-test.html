@@ -10,7 +10,7 @@
 
   <style type="text/css" media="screen">
     body { font-family: "fake font", Georgia, sans-serif; }
-    h1   { font-family: "fake font 2", "Gill Sans", "courier", "Helvetica Neue", sans-serif; }
+    h1   { font-family: "fake font 2", "Zapfino", "Gill Sans", "courier", "Helvetica Neue", sans-serif; }
     p    { }
   </style>
 
@@ -20,20 +20,25 @@
     $(document).ready(function() {
       // ($.fontstack.getStacksBySelector("p, h1"));
 
-      var font_stacks = 
-      [
-        [ "fake font", "Georgia", "sans-serif" ],
-        [ "fake font 2", "Gill Sans", "courier", "Helvetica Neue", "sans-serif" ],
-        [ "asdf", "Verdana" ],
-        [ "serif" ],
-        [ "arial" ],
-        [ "dammed browsers" ]
-      ];
+      var font_stacks = [
+                          [ "fake font", "Georgia", "sans-serif" ],
+                          [ "fake font 2", "Gill Sans", "courier", "Helvetica Neue", "sans-serif" ],
+                          [ "asdf", "Verdana" ],
+                          [ "serif" ],
+                          [ "monospace" ],
+                          [ "monaco", "courier", "monospace" ],
+                          [ "arial" ],
+                          [ "dammed browsers" ]
+                        ];
 
       ($.fontstack.identify( font_stacks ));
     });
   </script>
-	
+	<style type="text/css" media="screen">
+	 .verdana p {
+	   color: red;
+	 }
+	</style>
 </head>
 <body>
 
@@ -41,8 +46,8 @@
   
   <h1>This is a header</h1>
 
-  <p style="font-family: asdf, foo, Verdana">This is in Verdana?</p>
   <p>This is in Georgia?</p>
+  
 
 </div>
 </body>
