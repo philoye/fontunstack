@@ -18,7 +18,19 @@
   <script type="text/javascript" src="fontstack.jquery.js"></script>
   <script type="text/javascript">
     $(document).ready(function() {
-      ($.fontstack.getStacksBySelector("p, h1"));
+      // ($.fontstack.getStacksBySelector("p, h1"));
+
+      var font_stacks = 
+      [
+        [ "fake font", "Georgia", "sans-serif" ],
+        [ "fake font 2", "Gill Sans", "courier", "Helvetica Neue", "sans-serif" ],
+        [ "asdf", "Verdana" ],
+        [ "serif" ],
+        [ "arial" ],
+        [ "dammed browsers" ]
+      ];
+
+      ($.fontstack.identify( font_stacks ));
     });
   </script>
 	
@@ -29,7 +41,7 @@
   
   <h1>This is a header</h1>
 
-  <p style="font-family: asdf, foo, Verdana" id="foo">This is in Verdana?</p>
+  <p style="font-family: asdf, foo, Verdana">This is in Verdana?</p>
   <p>This is in Georgia?</p>
 
 </div>

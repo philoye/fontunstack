@@ -1,5 +1,6 @@
 jQuery.fontstack = {
-	
+
+	// getComputedStyle for font-family is completely fubar in Safari, so this function is useless.
 	getStacksBySelector: function(selector_string) {
 
     var selectors = selector_string.split(',');
@@ -7,17 +8,24 @@ jQuery.fontstack = {
     for (var i in selectors) {
       selector = selectors[i];
       var font_family_declaration = $(selector).eq(0).css('font-family').replace(/['"]/g, '');
-      console.log(font_family_declaration);
       $.fontstack.identifyStack(font_family_declaration);
     }
 
 	},
   
+  identify: function(font_stacks) {
+    
+    for (var i in font_stacks) {
+      var stack = font_stacks[i];
+      $.fontstack.identifyStack(stack);
+    }
+    
+  },
+  
   identifyStack: function(stack) {
 
-    var fonts = stack.split(',');
-    var numFonts = fonts.length;
-    var last_resort = fonts[numFonts -1];
+    var numFonts = stack.length;
+    var last_resort = stack[numFonts -1];
     var baseline = "monospace";
 
     // Use the monospace generic, unless it is specifed as the generic.
@@ -29,9 +37,10 @@ jQuery.fontstack = {
       fonts.push(baseline);
     };
     
-    for (var i in fonts) {
-      font = fonts[i];
+    for (var i in stack) {
+      font = stack[i];
       if ($.fontstack.testFont(font)) {
+        console.log(font);
         $("body").addClass(font.replace( /\s/g, "").toLowerCase());
         break;
       }
