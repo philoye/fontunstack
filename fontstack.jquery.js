@@ -30,13 +30,16 @@ jQuery.fontstack = {
     var last_resort = stack[num_fonts -1];
     var baseline = "monospace";
 
-    // TODO: I need to test if no generic specified at all, that's when we should add one.
+    if ((last_resort != "monospace") && (last_resort != "sans-serif") && (last_resort != "serif") && (last_resort != "cursive") && (last_resort != "fantasy")) {
+      stack.push(baseline);
+      num_fonts++;
+    }
+
     if (last_resort == "monospace") {
       baseline = "sans-serif";
-      stack.push(baseline);
     };
     
-    for (var i=0; i<num_fonts; i++) {
+    for (var i=0; i<num_fonts -1; i++) {
       font = stack[i];
 
       if ($.fontstack.testFont(font,baseline)) {
