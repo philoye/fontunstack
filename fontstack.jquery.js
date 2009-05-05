@@ -19,18 +19,22 @@
        var elems = elems || 'body';
        $.extend(this.options,opts);
 
-       // Handle a single font passed in.
+       if( this.options.class_prefix == "") {
+         this.options.class_prefix = "font_";
+       }
+
+       // Handle a css-style font-family declaration (string) passed in.
         if (stack.constructor.toString().indexOf("Array") == -1) {
-          stack = [stack];
+          stack = stack.replace(/['";]/g, '').split(',');
         }
        this.analyzeStack(stack,elems);
      },
 
-    analyzeStack: function(stack, elems) {
-      var generics = ["monospace", "sans-serif", "serif", "cursive", "fantasy"];
-      var baseline = generics[0];
-      var num_fonts = stack.length
-      var last_resort = stack[num_fonts -1];
+     analyzeStack: function(stack, elems) {
+       var generics = ["monospace", "sans-serif", "serif", "cursive", "fantasy"];
+       var baseline = generics[0];
+       var num_fonts = stack.length
+       var last_resort = stack[num_fonts -1];
 
       // If author hasn't included a generic (tsk, tsk), let's add one
       if ($.inArray(last_resort, generics)) { 
@@ -47,7 +51,10 @@
       for (var i=0; i<num_fonts -1; i++) {
         font = stack[i];
         if ($.fontstack.testFont(font, baseline)) {
-          $(elems).addClass(this.options.class_prefix + font.replace( /\s/g, "").toLowerCase());
+          // TODO: Remove any class that has our prefix.
+          // TODO: Convert to dumb ascii, remove punctuation, etc.
+          safe_font_name = font.replace( /\s/g, "").toLowerCase()
+          $(elems).addClass(this.options.class_prefix + safe_font_name);
           break; //We only want to find one font.
         }
       }

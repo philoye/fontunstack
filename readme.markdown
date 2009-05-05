@@ -26,11 +26,11 @@ Therefore, you need to repeat your font declaration in the javascript call to Fo
 BASIC USAGE
 -----------
 
-After including the JS file, call it with a font or an array of fonts on the element of choice. Make sure you wrap each font in quotes.
+After including the JS file, call it with a CSS-style font stack declaration on the element of choice. Make sure you wrap each font in quotes.
 
     $(document).ready(function() {
       $("h1").fontstack( "Gill Sans" );
-      $("p").fontstack( [ "obscure font", "Palatino", "Georgia", "monospace" ] );
+      $("p").fontstack( ' "obscure font", Palatino, Georgia, monospace '] );
     });
 
 Assuming Gill Sans and Palatino were installed, this would result in:
@@ -47,6 +47,13 @@ Notice that we add a prefix (which you can override), remove spaces, and force l
     p.font_palatino     { line-height: 1.5; }
 
 
+TIPS& TRICKS
+------------
+
+*  Be careful with calling FontStack more than once. If your selectors overlap, the last one wins.
+*  ???
+
+
 ADVANCED USAGE
 --------------
 
@@ -60,7 +67,7 @@ resulting in:
 
     <h1 class="rendered_in_gillsans">Heading</h1>
 
-You can use an empty string ("") to not preprend anything to the class if you'd like.
+A prefix is required as it is used to ensure that you never have more than one font class applied.
 
 
 HOW DOES IT WORK?

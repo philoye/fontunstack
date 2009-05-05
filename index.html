@@ -20,7 +20,8 @@
     $(document).ready(function() {
       $(":header").fontstack( ["fake font 2", "Zapfino", "Gill Sans", "courier", "Helvetica Neue", "sans-serif"] );
       $("p").fontstack( ["fake font", "Georgia", "monospace"] );
-      $("span").fontstack( "futura" , {class_prefix: "typeface_"});
+      $("span").fontstack( "futura" , {class_prefix: "rendered_in_"});
+      $("p.callout").fontstack( '"Helvetica Neue", Helvetica, Arial, sans-serif;' , {class_prefix: "rendered_in_"});
     });
 
   </script>
@@ -31,6 +32,7 @@
   <p>This is in Georgia, <span>while this this is in Futura.</span></p>
   <h2>This is a header</h2>
   <p>This is in Georgia, <span>while this this is in Futura.</span></p>
+  <p class="callout">This is in Helevetica</p>
 
 </body>
 </html>
