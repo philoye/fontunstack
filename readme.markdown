@@ -30,7 +30,7 @@ After including the JS file, call it with a CSS-style font stack declaration on 
 
     $(document).ready(function() {
       $("h1").fontstack( "Gill Sans" );
-      $("p").fontstack( ' "obscure font", Palatino, Georgia, monospace '] );
+      $("p").fontstack( ' "obscure font", Palatino, Georgia, monospace ' ] );
     });
 
 Assuming Gill Sans and Palatino were installed, this would result in:
