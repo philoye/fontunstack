@@ -21,26 +21,6 @@
        this.analyzeStack(stack,elems);
      },
      
-  	// getComputedStyle for font-family is completely fubar in Safari, so this function is useless.
-    // getStacksBySelector: function(selector_string) {
-    //       var selectors = selector_string.split(',');
-    // 
-    //       for (var i in selectors) {
-    //         selector = selectors[i];
-    //         var font_family_declaration = $(selector).eq(0).css('font-family').replace(/['"]/g, '');
-    //         $.fontstack.identifyStack(font_family_declaration);
-    //       }
-    // 
-    // },
-    //   
-    //     // An array of font stacks, not needed anymore?
-    //     identify: function(font_stacks) {
-    //       for (var i in font_stacks) {
-    //         var stack = font_stacks[i];
-    //         $.fontstack.identifyStack(stack);
-    //       }
-    //     },
-  
     analyzeStack: function(stack, elems) {
       console.log(elems);
       var num_fonts = stack.length
