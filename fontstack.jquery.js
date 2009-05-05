@@ -18,18 +18,21 @@
     init: function(stack, opts, elems){
        var elems = elems || 'body';
        $.extend(this.options,opts);
+
+       // Handle a single font passed in.
+        if (stack.constructor.toString().indexOf("Array") == -1) {
+          stack = [stack];
+        }
        this.analyzeStack(stack,elems);
      },
-     
+
     analyzeStack: function(stack, elems) {
-      var num_fonts = stack.length
-      var last_resort = stack[num_fonts -1];
       var generics = ["monospace", "sans-serif", "serif", "cursive", "fantasy"];
       var baseline = generics[0];
+      var num_fonts = stack.length
+      var last_resort = stack[num_fonts -1];
 
       // If author hasn't included a generic (tsk, tsk), let's add one
-      // TODO: Let's check if last resort is generics array instead of this ugly expression.
-
       if ($.inArray(last_resort, generics)) { 
         stack.push(baseline);
         num_fonts++;
@@ -45,7 +48,7 @@
         font = stack[i];
         if ($.fontstack.testFont(font, baseline)) {
           $(elems).addClass(this.options.class_prefix + font.replace( /\s/g, "").toLowerCase());
-          break; //We only want one font...
+          break; //We only want to find one font.
         }
       }
     },
