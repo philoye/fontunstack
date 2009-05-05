@@ -29,7 +29,8 @@
 
       // If author hasn't included a generic (tsk, tsk), let's add one
       // TODO: Let's check if last resort is generics array instead of this ugly expression.
-      if ((last_resort != "monospace") && (last_resort != "sans-serif") && (last_resort != "serif") && (last_resort != "cursive") && (last_resort != "fantasy")) {
+
+      if ($.inArray(last_resort, generics)) { 
         stack.push(baseline);
         num_fonts++;
       }
