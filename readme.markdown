@@ -50,7 +50,7 @@ Notice that we add a prefix (which you can override), remove spaces, and force l
 TIPS& TRICKS
 ------------
 
-*  Be careful with calling FontStack more than once. If your selectors overlap, the last one wins.
+*  Be careful with calling FontStack more than once. If your selectors overlap, the last one wins and removes and previous font classes. Use descendent selectors so you override the font class.
 
 
 ADVANCED USAGE
@@ -108,3 +108,9 @@ WHAT'S NEXT?
 ------------
 
 A good example file is first on the agenda, but apart from that, you tell me. I'm open to suggestions/patches.
+
+
+LICENSE
+------------
+
+This software is licensed under the MIT license.

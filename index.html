@@ -4,22 +4,24 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Font Stack</title>
+	<title>Font UnStack Example</title>
 	<meta name="author" content="Phil Oye">
 
   <style type="text/css" media="screen">
-    body  { font-family: "Garamond", "Georgia", "serif"; }
-    div   { width: 50em; margin: 0 auto;}
+    body  { font-family: "Garamond1", "Georgia", "times", "times new roman", "serif"; }
+    div   { width: 40em; margin: 0 auto;}
     
-    h1 { font-family: "fake font 2", "Zapfino", "Gill Sans", "courier", "Helvetica Neue", sans-serif; margin-bottom: 0; font-size: 2em; font-weight: normal;}
+    h1 { font-family: "fake font", "Zapfino", "Gill Sans1", "Helvetica", "Arial" sans-serif; margin-bottom: 0; font-size: 2em; font-weight: normal;}
     h1.set_in_zapfino { margin-bottom: -1em; font-size: 1.75em; margin-left: -.15em;}
+    h1.set_in_gillsans { margin-left: -.05em;}
 
-    p.set_in_garamond { line-height: 1.4; font-size: 1.1em;  }
-    p.set_in_georgia { line-height: 1.6;  font-size: .98em;}
+    p { line-height: 1.4;}
+    p.set_in_garamond { line-height: 1.3; font-size: 1.1em;  }
+    p.set_in_georgia { line-height: 1.5;  font-size: .95em;}
     
-    p.pullquote { font-size: 2em; color: #999; margin: 0; line-height: 1;}
-    p.pullquote.set_in_garamond { margin-left: -.35em;}
-    p.pullquote.set_in_georgia { margin-left: -.40em;}
+    p.pullquote { font-size: 2em; color: #999; margin: 0; line-height: 1; margin-left: -.45em;}
+    p.pullquote.set_in_garamond { margin-left: -.45em;}
+    p.pullquote.set_in_georgia { margin-left: -.45em;}
 
   </style>
 
@@ -28,8 +30,8 @@
   <script type="text/javascript">
 
     $(document).ready(function() {
-      $(":header").fontstack( ["fake font 2", "Zapfino", "Gill Sans", "courier", "Helvetica Neue", "sans-serif"] );
-      $("p").fontstack( ["fake font", "Garamond", "Georgia", "monospace"] );
+      $(":header").fontstack( ["fake font", "Zapfino", "Gill Sans", "Helvetica", "Arial", "sans-serif"] );
+      $("p").fontstack( ["fake font", "Garamond1", "Georgia", "times", "times new roman", "serif"] );
     });
 
   </script>
@@ -37,10 +39,15 @@
 <body>
 
   <div>
-    <h1>Font<em>Un</em>stack Example Page</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <h1>Font<em>Un</em>stack Example</h1>
+
+    <p>The title on this page uses the “Zapfino” as the first choice. This typeface has very extreme metrics and really benefits from some custom styling, <em>but only when it is present</em>. In this example, when Zapfino is installed we use a negative bottom margin, a smaller size, and a slight negative left margin, to bring get it to align with this paragraph. If you don't have Zapfino, you get a more standard typeface (Gill Sans, Helvetica, or Arial), and we don't need these styles.</p>
+      
+    <p>The body text uses Garamond (preferred), then Georgia and Times/Times New Roman. Garamond has a small x-height so needs less leading, Georgia has a much bigger x-height making it appear much larger, so benefits from more lead. </p>
+
     <p class="pullquote">“A hanging pullquote…”</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    
+    <p>A hanging quote (when the “ sits outside the left margin) is normally difficult to achieve using relative type sizes when you don't actually know what typeface is used. In the above example, Garamond, Georgia, and Times/Times New Roman all need a different negative margin (-.40em, -.35em, and -.45em respectively. )</p>
   </div>
   
 </body>
