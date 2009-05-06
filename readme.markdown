@@ -1,10 +1,10 @@
-FontStack
+FontUnstack
 =========
 
 WHAT IS IT?
 -----------
 
-FontStackJS is a jQuery plugin that provides a workaround for not knowing which typeface in a CSS font stack is actually used on the client-side. It simply adds a class with the name of the installed font to your desired HTML element(s). From there, you use CSS to do something interesting with that new class name.
+FontUnstack is a jQuery plugin that provides a workaround for the CSS/browser limitation of not knowing which typeface in a CSS font stack is actually used on the client-side. It simply adds a class with the name of the installed font to your desired HTML element(s). From there, you use CSS to do something interesting with that new class name.
 
 
 WHY MIGHT YOU WANT THIS?
@@ -18,7 +18,7 @@ People have worked around this limitation by selecting font-stacks that are as s
 DISCLAIMER
 ----------
 
-We can't programmatically discover the declared font-family style for an element via JavaScript unless it is declared inline (don't do that). The current state of browsers are inconsistent in what they report (Safari, I'm looking in your direction).
+We can't programmatically discover the declared font stack for an element via JavaScript unless it is declared inline (don't do that). The current state of browsers are inconsistent in what they report (Safari, I'm looking in your direction).
 
 Therefore, you need to repeat your font declaration in the javascript call to FontStack. This will no doubt cause frustration down the line when you change your CSS font stack but forget to update the JS and don't get what you expect. I apologize in advance.
 
@@ -51,7 +51,6 @@ TIPS& TRICKS
 ------------
 
 *  Be careful with calling FontStack more than once. If your selectors overlap, the last one wins.
-*  ???
 
 
 ADVANCED USAGE
@@ -98,9 +97,14 @@ No problem. You can be content in knowing that if no font is found, no classes a
 WHAT NOT USE __________ ?
 -------------------------
 
-Cufon, sIFR, CSS Image Replacement are all cool, but they don't allow cut/copy/paste. But they let you use any font you want. Tradeoffs.
+sIFR: Requires flash, adds a rendering delay, is somewhat difficult to work with, however, you can use any font without licensing restrictions.
+
+CSS Image Replacement: Doesn't allow cut/copy/paste, adds maintenance overhead, and may have accessibility concerns (depending on the implementation). But you can use any font you want without any licensing restrictions.
+
+@font-face (aka font embedding): This is most certainly the future, however, there are significant licensing issues for non-free fonts, and it doesn't yet work in all browsers (Opera).
 
 
 WHAT'S NEXT?
 ------------
-You tell me.
+
+A good example file is first on the agenda, but apart from that, you tell me. I'm open to suggestions/patches.
