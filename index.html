@@ -11,6 +11,7 @@
     body  { font-family: "fake font", Georgia, sans-serif; }
     h1,h2 { font-family: "fake font 2", "Zapfino", "Gill Sans", "courier", "Helvetica Neue", sans-serif; }
     span  { font-family: "futura"; }
+    .set_in_helveticaneue {color: red;}
   </style>
 
   <script type="text/javascript" src="lib/jquery.1.3.2.min.js"></script>
@@ -20,8 +21,8 @@
     $(document).ready(function() {
       $(":header").fontstack( ["fake font 2", "Zapfino", "Gill Sans", "courier", "Helvetica Neue", "sans-serif"] );
       $("p").fontstack( ["fake font", "Georgia", "monospace"] );
-      $("span").fontstack( "futura" , {class_prefix: "set_in_"});
-      $("p.callout").fontstack( '"Helvetica Neue", Helvetica, Arial, sans-serif;' , {class_prefix: "set_in_"});
+      $("span").fontstack( "futura" );
+      $("p.callout").fontstack( '"Helvetica Neue", Helvetica, Arial, sans-serif;' );
     });
 
   </script>
