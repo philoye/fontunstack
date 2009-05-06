@@ -8,10 +8,19 @@
 	<meta name="author" content="Phil Oye">
 
   <style type="text/css" media="screen">
-    body  { font-family: "fake font", Georgia, sans-serif; }
-    h1,h2 { font-family: "fake font 2", "Zapfino", "Gill Sans", "courier", "Helvetica Neue", sans-serif; }
-    span  { font-family: "futura"; }
-    .set_in_helveticaneue {color: red;}
+    body  { font-family: "Garamond", "Georgia", "serif"; }
+    div   { width: 50em; margin: 0 auto;}
+    
+    h1 { font-family: "fake font 2", "Zapfino", "Gill Sans", "courier", "Helvetica Neue", sans-serif; margin-bottom: 0; font-size: 2em; font-weight: normal;}
+    h1.set_in_zapfino { margin-bottom: -1em; font-size: 1.75em; margin-left: -.15em;}
+
+    p.set_in_garamond { line-height: 1.4; font-size: 1.1em;  }
+    p.set_in_georgia { line-height: 1.6;  font-size: .98em;}
+    
+    p.pullquote { font-size: 2em; color: #999; margin: 0; line-height: 1;}
+    p.pullquote.set_in_garamond { margin-left: -.35em;}
+    p.pullquote.set_in_georgia { margin-left: -.40em;}
+
   </style>
 
   <script type="text/javascript" src="lib/jquery.1.3.2.min.js"></script>
@@ -20,20 +29,19 @@
 
     $(document).ready(function() {
       $(":header").fontstack( ["fake font 2", "Zapfino", "Gill Sans", "courier", "Helvetica Neue", "sans-serif"] );
-      $("p").fontstack( ["fake font", "Georgia", "monospace"] );
-      $("span").fontstack( "futura" );
-      $("p.callout").fontstack( '"Helvetica Neue", Helvetica, Arial, sans-serif;' );
+      $("p").fontstack( ["fake font", "Garamond", "Georgia", "monospace"] );
     });
 
   </script>
 </head>
 <body>
 
-  <h1>This is a header</h1>
-  <p>This is in Georgia, <span>while this this is in Futura.</span></p>
-  <h2>This is a header</h2>
-  <p>This is in Georgia, <span>while this this is in Futura.</span></p>
-  <p class="callout">This is in Helevetica</p>
-
+  <div>
+    <h1>Font<em>Un</em>stack Example Page</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p class="pullquote">“A hanging pullquote…”</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </div>
+  
 </body>
 </html>
