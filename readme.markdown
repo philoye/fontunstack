@@ -42,16 +42,16 @@ Assuming Gill Sans and Palatino were installed, this would result in:
 Notice that we add a prefix (which you can override), remove spaces, and force lowercase to ensure a valid name. With this, we can use CSS to do something useful.
 
     h1                  { }
-    h1.font_gillsans    { letter-spacing: .1em;  }
+    h1.set_in_gillsans  { letter-spacing: .1em;  }
     p                   { line-height: 1.5; }
-    p.font_georgia      { line-height: 1.6; }
-    p.font_palatino     { line-height: 1.4; }
+    p.set_in_georgia    { line-height: 1.6; }
+    p.set_in_palatino   { line-height: 1.4; }
 
 
 TIPS& TRICKS
 ------------
 
-*  Be careful with calling FontUnstack more than once. If your selectors overlap, the last one wins and removes and previous font classes. Try calling fontUnstack on containing divs for your baseline font, and then call it on particular elements to override.
+Be careful with calling FontUnstack more than once. If your selectors overlap, the last one wins and removes and previous font classes. Try calling fontUnstack on containing divs for your baseline font, and then call it on particular elements to override.
 
 
 ADVANCED USAGE
@@ -86,7 +86,7 @@ For an example open the index.html file in a web browser.
 FOR THE NAYSAYERS
 -----------------
 
-*Arrrgh! You are cluttering up the HTML with purely presentational class-names!!!*
+*Arrrgh! You are cluttering up the HTML with purely presentational class-names!!! Epic Fail!*
 
 Certainly not ideal, but what's the downside? The classes are only applied at rendertime. Screenreaders and the like don't actually read out loud class names, do they?
 
