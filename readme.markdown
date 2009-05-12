@@ -30,8 +30,8 @@ BASIC USAGE
 After including the JS file, call it with a CSS-style font stack declaration on the element of choice. Make sure you wrap the entire declaration in quotes.
 
     $(document).ready(function() {
-      $("h1").fontstack( ' "Gill Sans", "Helvetica Neue", Helvetica, sans-serif ' );
-      $("p").fontstack( ' "obscure font", Palatino, Georgia, Times, "Times New Roman", serif ' ] );
+      $("h1").fontunstack( ' "Gill Sans", "Helvetica Neue", Helvetica, sans-serif ' );
+      $("p").fontunstack( ' "obscure font", Palatino, Georgia, Times, "Times New Roman", serif ' ] );
     });
 
 Assuming Gill Sans and Palatino were installed, this would result in:
@@ -51,7 +51,7 @@ Notice that we add a prefix (which you can override), remove spaces, and force l
 TIPS& TRICKS
 ------------
 
-*  Be careful with calling FontStack more than once. If your selectors overlap, the last one wins and removes and previous font classes. Try calling fontUnstack on containing divs for your baseline font, and then call it on particular elements to override.
+*  Be careful with calling FontUnstack more than once. If your selectors overlap, the last one wins and removes and previous font classes. Try calling fontUnstack on containing divs for your baseline font, and then call it on particular elements to override.
 
 
 ADVANCED USAGE
@@ -60,7 +60,7 @@ ADVANCED USAGE
 Ok, it isn't really that advanced, but you can change the prefix for the added class name by calling it like so:
 
     $(document).ready(function() {
-      $("h1").fontstack( ' Gotham, "Gill Sans", serif ', "rendered_in_" );
+      $("h1").fontunstack( ' Gotham, "Gill Sans", serif ', "rendered_in_" );
     });
 
 resulting in:
