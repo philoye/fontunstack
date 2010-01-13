@@ -1,10 +1,10 @@
 FontUnstack
-=========
+===========
 
 WHAT IS IT?
 -----------
 
-FontUnstack is a jQuery plugin that provides a workaround for the CSS/browser limitation of not knowing which typeface in a CSS font stack is actually used on the client-side. It simply adds a class with the name of the installed font to your desired HTML element(s). From there, you use CSS to do something interesting with that new class name.
+FontUnstack is a jQuery plugin that provides a workaround for the CSS/browser limitation of not knowing which typeface in a CSS font stack is actually used on the client-side. It does this by adding a class with the name of the installed font to your desired HTML element(s). From there, you use CSS to do something interesting with that new class name, like change other type properties like type size, line-height, letter-spacing, margins, etc.
 
 
 WHY MIGHT YOU WANT THIS?
@@ -15,6 +15,7 @@ Different fonts have different metrics and can benefit from, say, different lead
 People have worked around this limitation by selecting font-stacks that are as similar as possible so that these differences are minimized, however, by knowing the installed font, you can choose different line-height values for the current font. However, it also opens up some advanced typography options. You could, for example, handle hanging quotes correctly because you could use the appropriate negative-margin to apply for Palatino, Georgia, or Times, depending on which was installed.
 
 Andy Clarke has written on the subject recently in his article [Lead Pipes](http://forabeautifulweb.com/blog/about/lead_pipe/).
+
 
 DISCLAIMER
 ----------
@@ -27,31 +28,33 @@ Therefore, you need to repeat your font declaration in the javascript call to Fo
 BASIC USAGE
 -----------
 
-After including the JS file, call it with a CSS-style font stack declaration on the element of choice. Make sure you wrap the entire declaration in quotes.
+After including jQuery and the FontUnstack javascript file, call it with a CSS-style font stack declaration on the element of choice. **Make sure you wrap the entire declaration in quotes**.
 
     $(document).ready(function() {
+      $("body").fontunstack( ' "obscure font", Palatino, Georgia, Times, "Times New Roman", serif ' );
       $("h1").fontunstack( ' "Gill Sans", "Helvetica Neue", Helvetica, sans-serif ' );
-      $("p").fontunstack( ' "obscure font", Palatino, Georgia, Times, "Times New Roman", serif ' ] );
     });
 
-Assuming Gill Sans and Palatino were installed, this would result in:
+Assuming Gill Sans and Palatino were installed, this might result in:
 
-    <h1 class="set_in_gillsans">Heading</h1>
-    <p class="set_in_palatino">This is some text</p>
+    <body class="set_in_palatino">
+      <h1 class="set_in_gillsans">Heading</h1>
+      This is some text
+    </body>
 
-Notice that we add a prefix (which you can override), remove spaces, and force lowercase to ensure a valid name. With this, we can use CSS to do something useful.
+Notice that we add a prefix (which you can change), remove spaces, and force lowercase to ensure a valid name. With this, we can use CSS to do something useful.
 
-    h1                  { }
-    h1.set_in_gillsans  { letter-spacing: .1em;  }
-    p                   { line-height: 1.5; }
-    p.set_in_georgia    { line-height: 1.6; }
-    p.set_in_palatino   { line-height: 1.4; }
+    body                 { line-height: 1.5; }
+    body.set_in_georgia  { line-height: 1.6; }
+    body.set_in_palatino { line-height: 1.4; }
+    h1                   { }
+    h1.set_in_gillsans   { letter-spacing: .1em;  }
 
 
-TIPS& TRICKS
-------------
+TIPS & TRICKS
+-------------
 
-Be careful with calling FontUnstack more than once. If your selectors overlap, the last one wins and removes and previous font classes. Try calling fontUnstack on containing divs for your baseline font, and then call it on particular elements to override.
+Be careful with calling FontUnstack more than once. If your selectors overlap, the last one wins and removes and previous font classes. Try calling FontUnstack on containing divs for your baseline font, and then call it on particular elements to override.
 
 
 ADVANCED USAGE
@@ -67,7 +70,23 @@ resulting in:
 
     <h1 class="rendered_in_gotham">Change</h1>
 
-While you can choose any valid prefix (avoid starting with a digit), a prefix **is** required as it is used to ensure that you never have more than one font class applied. 
+While you can choose any valid prefix (avoid starting with a digit), a prefix **is** required as it is used by the script to ensure that you never have more than one font class applied. 
+
+
+USING FONTUNSTACK WITH @FONT-FACE
+---------------------------------
+
+In general, FontUnstack doesn't care about @font-face. It should "just work". It simply checks whether the font is installed, regardless of how it got there.
+
+However, there is one caveat. When the page loads, FontUnstack will probably run before your embedded font is downloaded. Thus you can run into a situation where your text is in one typeface, while the assigned class is corresponds to the fallback typeface, because at the time of testing the embedded font **wasn't** installed. Furthermore, sometimes the code might even run before the font is pulled from cache leading to unpredictable results (observed in FireFox 3.5.6).
+
+The solution is to defer running FontUnstack until after your font is downloaded. You can do this by calling it after all assets (including images and the like, unfortunately) are downloaded by using $(window).load instead of $(document).ready:
+
+    $(window).load(function() {
+      $("h1").fontunstack( ' "Gill Sans", "Helvetica Neue", Helvetica, sans-serif ' );
+    });
+
+Suggestions welcome on how to defer until only the font is downloaded, not everything on the page.
 
 
 HOW DOES IT WORK?
@@ -93,22 +112,6 @@ Certainly not ideal, but what's the downside? The classes are only applied at re
 *Custom fonts? Bah, like 640k, the generic serif and sans-serif are good enough for everyone.*
 
 No problem. You can be content in knowing that if no font is found, no classes are added. Nor are any kittens harmed. 
-
-
-WHY NOT USE __________ INSTEAD?
--------------------------------
-
-There are a number of other options out there for using non-core fonts, each has its advantages/disadvantages:
-
-*  sIFR: Requires flash (sorry iPhone!), has a rendering delay where items "pop-in", and is somewhat difficult to work with, however, you can use any font without licensing restrictions.
-
-*  CSS Image Replacement: Doesn't allow cut/copy/paste, adds maintenance overhead for text changes, and may have accessibility concerns (depending on the implementation). But you can use any font you want without any licensing restrictions.
-
-*  CSS3: Don't solve the problem at all, unfortunately.
-
-*  @font-face (aka font embedding): This is most certainly the future, however, there are **significant** licensing issues for non-free fonts, and it doesn't yet work in all browsers (Opera).
-
-In contrast to the above, FontUnstack, doesn't use Flash (good), has wide browser support (good), uses standard html text so cut/copy/paste works (good) and maintains easy editing of copy (good), but still ultimately relies on the fonts that the viewer has installed (bad). Pick your poison.
 
 
 WHAT'S NEXT?
