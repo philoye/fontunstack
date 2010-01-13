@@ -4,70 +4,102 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Font UnStack Example</title>
-	<meta name="author" content="Phil Oye">
+	<title>FontUnstack, a jQuery plugin for telling you which font in a CSS font stack is used</title>
 
-  <style type="text/css" media="screen">
+  <meta name="page" content="Home">
+  <meta name="date" content="2009-05-23 11:57:20">
+  <meta name="version" content="0.1">
+  <meta name="status" content="Public beta">
+  <meta name="author" content="Phil Oye">
+  <meta name="description" content="FontUnstack is a jQuery plugin for telling you which font in a CSS font stack is used">
+  <meta name="keywords" content="jquery, plugin, typography, css, font stack, font unstack, fontunstack, font, fonts">
 
-    body          { font-family: georgia, times, "times new roman", serif; line-height: 1.4; padding-bottom: 10em; }
-    .container    { width: 37em; margin: 0 auto;}
+	<style type="text/css" media="screen">
+	
+    body       { font-family: georgia, times, "times new roman", serif; line-height: 1.4; }
+		#container { position: relative; width: 32em; margin: 120px 0 0 135px; }
+		.footer { margin-top: 2em; padding-top: .25em; color: #777; font-style: italic; border-top: 1px solid #aaa; }
 
-    .switch_font, 
-    .force_times  { font-family: times, "times new roman", serif; }
-    .emphasis     { background-color: #eee; padding: 1em; }
+		a         { color: #ff7600; }
+		code      { background-color: #ddd; border: #ccc; padding: 2px 0; font-size: 14px; }
+    img       { border: 0; }
+    .emphasis { background-color: #eee; padding: 1em; }
+
+    .switch_font, .force_times { font-family: times, "times new roman", serif;}
+
+    p { margin-top: 0; }
+      p.slogan                        { font-size: 21px; font-style: italic; }
+        p.slogan.set_in_georgia       { font-size: 1em; }
+        p.slogan.set_in_timesnewroman { font-size: 1.1em; width: auto;}
+        p.slogan.set_in_times         { font-size: 1.1em; width: auto;}
     
-    h1                         { font-family: "fake font", futura, "Zapfino", Helvetica, Arial, sans-serif; margin: 1em 0 0 0; font-size: 2em; font-weight: normal; padding-left: .5em; text-transform: uppercase; letter-spacing: normal;}
-      h1.set_in_zapfino        { margin: 1.5em 0 0 0; margin-left: -.15em; letter-spacing: normal; text-transform: lowercase;}
-        h1.set_in_zapfino em   { color: #999;}
-      h1.set_in_futura         { margin-left: -.1em;;}
-        h1.set_in_futura em    { color: red; font-style: normal;}
-      h1.set_in_helvetica      { margin-left: -.1em; font-weight: bold; color: #999;}
-        h1.set_in_helvetica em { color: red; font-style: normal;}
+		h1                     { margin: 0; padding: 0; color: #6d6d6d; font-size: 4.3em; line-height: 1em; font-family: "Gill Sans", "Arial Black", "Verdana", "Helvetica", sans-serif; }
+      h1.set_in_gillsans   { font-size: 4.75em; margin-left: -6px; }
+      h1.set_in_arialblack { font-size: 4.45em; margin-left: -5px; }
+      h1.set_in_verdana    { font-size: 4.45em; margin-left: -5px; }
+      h1.set_in_helvetica  { font-size: 5.10em; margin-left: -6px; }
+        h1 em              { color: #ff7600; font-style: normal; }
 
-    h2 { text-transform: uppercase; font-size: .8em; margin: 2.5em 0 0 0; padding-left: 1.25em; }
+    h2 { font-size: 1em; margin: 2em 0 0 0; }
 
-    h2.pullquote                        { font-weight: normal; font-size: 2em; color: #999; margin: 0; line-height: 1; margin-left: -.40em; padding-left: .5em; text-transform: none; }
+    h2.pullquote                        { font-weight: normal; font-size: 2em; color: #999; line-height: 1; margin: .5em 0 .5em -.4em; text-transform: none; }
       h2.pullquote.set_in_georgia       { margin-left: -.5em;}
       h2.pullquote.set_in_times, 
       h2.pullquote.set_in_timesnewroman { margin-left: -.45em;}
 
-    p                        { padding: 0 1em;}
-      .set_in_georgia p      { line-height: 1.45;}
-      p.set_in_times, 
-      p.set_in_timesnewroman { line-height: 1.35; width: 30em; }
-
-  </style>
-
+    p                        { padding: 0;}
+      .set_in_georgia p      { line-height: 1.5;}
+      p.set_in_times,
+      p.set_in_timesnewroman { line-height: 1.4; width: 26.5em; }
+    
+	</style>
+  
   <script type="text/javascript" src="lib/jquery.1.3.2.min.js"></script>
   <script type="text/javascript" src="lib/fontunstack.jquery.js"></script>
-  <script type="text/javascript">
-
+  <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      $("body").fontunstack( ' georgia, times, "times new roman", serif' );
-      $("h1").fontunstack( ' "fake font", futura, Zapfino, Helvetica, Arial, sans-serif ' );
-      $(".switch_font").fontunstack( ' times, "times new roman", serif ' );
-    });
-
+      $("body").fontunstack( ' "Georgia", "Times New Roman", "Times", serif' );
+      $(".switch_font").fontunstack( ' "Times New Roman", "Times", serif ' );
+      $("h1").fontunstack( ' "Gill Sans", "Arial Black", "Verdana", "Helvetica", sans-serif ' );
+      $("p.slogan").fontunstack( ' "Georgia", "Times New Roman", "Times", serif' );
+		});
   </script>
+  
 </head>
 <body>
+  <a href="http://github.com/philoye/font-unstack" style="position: absolute; top: 0; left: 0; border: 0;"><img src="http://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png" alt="Fork me on GitHub"></a>
 
-  <div class="container">
-    <h1>Font<em>Un</em>stack</h1>
-    <p>FontUnstack is a jQuery plugin that provides a workaround for the CSS/browser limitation of not knowing which typeface in a CSS font stack is actually used on the client-side. It does this by adding a class with the name of the installed font to your desired HTML element(s). From there, you use CSS to do something interesting with that new class name, like change other type properties like type size, line-height, letter-spacing, margins, etc.</p>
-    <p>To see what is happening in this example, you'll need Georgia and Times (or Times New Roman) installed.</p>
+  <div id="container">
+    <h1 title="And you thought dropping vowels was going out of fashion.">Font<em>Un</em>stack</h1>
+    <p class="slogan">a jQuery plugin for telling you which font in a CSS font stack is used</p>
 
+    <h2>What&rsquo;s this all about?</h2>
+    <p>FontUnstack is a jQuery plugin that provides a workaround for the CSS/browser limitation of not knowing which typeface in a CSS font stack is actually used on the client-side.</p>
+    <p>It adds a class with the name of the installed font to your desired HTML element(s). From there, you use CSS to do something interesting with that new class name, like change other type properties like type size, line-height, letter-spacing, margins, etc.</p>
+      
+    <h2>The page title and the slogan</h2>
+    <p>Depending on what font you have installed, the page title will be either be in Gill Sans, Arial Black, Verdana, or Helvetica, while the slogan is in Georgia, Times New Roman, or Times. One of the goals was to get the line length for each to be equal. However, each of these typefaces require different type sizes to make that happen.
+      
+<pre><code>h1.set_in_gillsans   { font-size: 4.75em; margin-left: -6px; }
+h1.set_in_arialblack { font-size: 4.45em; margin-left: -5px; }
+h1.set_in_verdana    { font-size: 4.45em; margin-left: -5px; }
+h1.set_in_helvetica  { font-size: 5.10em; margin-left: -6px; }
+
+p.slogan.set_in_georgia       { font-size: 1.0em; }
+p.slogan.set_in_timesnewroman { font-size: 1.1em; }
+p.slogan.set_in_times         { font-size: 1.1em; }</pre></code>
+      
     <h2>Accounting for differences in x-height</h2>
-    <p>The body text uses Georgia and then falls back to Times/Times New Roman. Georgia has a large x-height, making it appear larger, and benefits from more lead, while the fallback, Times/Times New Roman, has a small x-height and needs less lead. Also, the width of the typefaces differ so the measure changes (the number of characters per line). Let’s bring out our old friend Lorem Ipsum to illustrate. First in Georgia.</p>
+    <p>The body text on this page uses Georgia and then fallback to Times/Times New Roman. Georgia has a large x-height, making it appear larger, and benefits from more lead, while the fallback, Times/Times New Roman, has a small x-height and needs less lead. Also, width of the typefaces differ so the measure changes (the number of characters per line). Let’s bring out our old friend Lorem Ipsum to illustrate. First in Georgia.</p>
     <p class="emphasis">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     <p>Now in Times, with the same type size, width, and line-height.</p>
     <p class="emphasis force_times">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    <p>It isn't <em>terrible</em>, but notice the wrapping is different, and the spacing between lines is more open. To account for these differences, let’s use a smaller line-height (1.4 vs 1.5) and a narrower width on the paragraph (30em vs 35em).</p>
+    <p>Notice the wrapping is different, and the spacing between lines is more open. To account for these differences, let’s use a smaller line-height (1.4 vs 1.5) and a narrower width on the paragraph (26.5em vs 32em).</p>
     <p class="emphasis switch_font">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     <p>Now it matches the wrapping of the copy set in Georgia.</p>
       
     <h2>Pullquotes and negative margins</h2>
-    <p>A hanging quote (when the “ sits outside the left margin and the first letter lines up instead) is normally difficult to achieve when you don't actually know what typeface is used, because the width of the quote mark is different in different typefaces. An example:</p>
+    <p>A hanging quote (when the “ sits outside the left margin and the first letter lines up instead) is normally difficult to achieve when you don&rsquo;t actually know what typeface is used, because the width of the quote mark is different in different typefaces. An example:</p>
       
     <h2 class="pullquote">“A hanging pullquote…”</h2>
     <p>The above is set in Georgia and has a negative of margin of -.5em.</p>
@@ -75,13 +107,11 @@
     <h2 class="pullquote switch_font">“A hanging pullquote…”</h2>
     <p>When set in Times, we use a slightly smaller negative left margin of -.45em to get it to align properly.</p>
 
-    <h2>About that page title…</h2>
-    <p>The title of this page uses the Zapfino, Futura, Helvetica, or Arial. Depending on which font you have installed, you’ll get a different title treatment. View source to see how it all works.</p>
-
     <h2>Ok, now what?</h2>
     <p>Put on your typography fancy pants on and <a href="http://github.com/philoye/fontunstack/archives/master">download</a> it from <a href="http://github.com/philoye/fontunstack">GitHub</a>.</p>
 
+    <p class="footer">FontUnstack was written by <a href="http://philoye.com">Phil Oye</a>. Follow me on <a href="http://twitter.com/philoye">Twitter</a> or send me an email to philoye [at] philoye [dot] com. FontUnstack is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT License</a>. 
+
   </div>
-  
 </body>
 </html>

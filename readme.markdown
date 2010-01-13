@@ -80,7 +80,7 @@ In general, FontUnstack doesn't care about @font-face. It should "just work". It
 
 However, there is one caveat. When the page loads, FontUnstack will probably run before your embedded font is downloaded. Thus you can run into a situation where your text is in one typeface, while the assigned class is corresponds to the fallback typeface, because at the time of testing the embedded font **wasn't** installed. Furthermore, sometimes the code might even run before the font is pulled from cache leading to unpredictable results (observed in FireFox 3.5.6).
 
-The solution is to defer running FontUnstack until after your font is downloaded. You can do this by calling it after all assets (including images and the like, unfortunately) are downloaded by using $(window).load instead of $(document).ready:
+The solution is to defer running FontUnstack until after your font is downloaded. You can do this by calling it after all assets (including images and the like, unfortunately) are downloaded by using `$(window).load` instead of `$(document).ready`:
 
     $(window).load(function() {
       $("h1").fontunstack( ' "Gill Sans", "Helvetica Neue", Helvetica, sans-serif ' );
