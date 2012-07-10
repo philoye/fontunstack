@@ -83,7 +83,7 @@ resulting in:
 
     <h1 class="rendered_in_gotham">Change</h1>
 
-While you can choose any valid prefix (avoid starting with a digit), a prefix **is** required as it is used by the script to ensure that you never have more than one font class applied. 
+While you can choose any valid prefix (avoid starting with a digit), a prefix **is** required as it is used by the script to ensure that you never have more than one font class applied.
 
 
 USING FONTUNSTACK WITH @FONT-FACE
