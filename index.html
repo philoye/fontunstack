@@ -16,7 +16,7 @@
 
 	<style type="text/css" media="screen">
 
-    body       { font-family: georgia, times, "times new roman", serif; line-height: 1.4; }
+    body       { font-family: 'fake font', georgia, times, "times new roman", serif; line-height: 1.4; }
 		#container { position: relative; width: 32em; margin: 120px 0 0 135px; }
 		.footer { margin-top: 2em; padding-top: .25em; color: #777; font-style: italic; border-top: 1px solid #aaa; }
 
@@ -58,10 +58,10 @@
   <script type="text/javascript" src="lib/fontunstack.jquery.js"></script>
   <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-      $("body").fontunstack( ' "Georgia", "Times New Roman", "Times", serif' );
-      $(".switch_font").fontunstack( ' "Times New Roman", "Times", serif ' );
-      $("h1").fontunstack( ' "Gill Sans", "Arial Black", "Verdana", "Helvetica", sans-serif ' );
-      $("p.slogan").fontunstack( ' "Georgia", "Times New Roman", "Times", serif' );
+      $("body").fontunstack();
+      $(".switch_font").fontunstack();
+      $("h1").fontunstack();
+      $("p.slogan").fontunstack();
 		});
   </script>
 

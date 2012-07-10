@@ -28,14 +28,25 @@ Therefore, you need to repeat your font declaration in the javascript call to Fo
 BASIC USAGE
 -----------
 
-After including jQuery and the FontUnstack javascript file, call it with a CSS-style font stack declaration on the element of choice. **Make sure you wrap the entire declaration in quotes**.
+After including jQuery and the FontUnstack javascript file, call `fontunstack()` on a jquery selector and a class will be added to each element with the font that is actually be used.
+
+So for example, assuming this CSS:
+
+    body {
+      font-family: "obscure font", Palatino, Georgia, Times, "Times New Roman", serif;
+    }
+    h1 {
+      font-family: "Gill Sans", "Helvetica Neue", Helvetica, sans-serif;
+    }
+
+and assuming Gill Sans and Palatino were installed, this might result in:
 
     $(document).ready(function() {
-      $("body").fontunstack( ' "obscure font", Palatino, Georgia, Times, "Times New Roman", serif ' );
-      $("h1").fontunstack( ' "Gill Sans", "Helvetica Neue", Helvetica, sans-serif ' );
-    });
+      $("body").fontunstack();
+      $("h1").fontunstack();
+    })
 
-Assuming Gill Sans and Palatino were installed, this might result in:
+Then the following classes would be applied:
 
     <body class="set_in_palatino">
       <h1 class="set_in_gillsans">Heading</h1>
@@ -54,7 +65,9 @@ Notice that we add a prefix (which you can change), remove spaces, and force low
 TIPS & TRICKS
 -------------
 
-Be careful with calling FontUnstack more than once. If your selectors overlap, the last one wins and removes and previous font classes. Try calling FontUnstack on containing divs for your baseline font, and then call it on particular elements to override.
+If you were to do something like `$('p').fontunstack()`, every `<p>` tag would be individually tested. Try calling FontUnstack on containing divs for your baseline font, and then call it on particular elements to override.
+
+Be careful with calling FontUnstack more than once. If your selectors overlap, the last one wins and removes and previous font classes.
 
 
 ADVANCED USAGE
@@ -83,7 +96,7 @@ However, there is one caveat. When the page loads, FontUnstack will probably run
 The solution is to defer running FontUnstack until after your font is downloaded. You can do this by calling it after all assets (including images and the like, unfortunately) are downloaded by using `$(window).load` instead of `$(document).ready`:
 
     $(window).load(function() {
-      $("h1").fontunstack( ' "Gill Sans", "Helvetica Neue", Helvetica, sans-serif ' );
+      $("h1").fontunstack();
     });
 
 Suggestions welcome on how to defer until only the font is downloaded, not everything on the page.
@@ -111,7 +124,7 @@ Certainly not ideal, but what's the downside? The classes are only applied at re
 
 *Custom fonts? Bah, like 640k, the generic serif and sans-serif are good enough for everyone.*
 
-No problem. You can be content in knowing that if no font is found, no classes are added. Nor are any kittens harmed. 
+No problem. You can be content in knowing that if no font is found, no classes are added. Nor are any kittens harmed.
 
 
 WHAT'S NEXT?
