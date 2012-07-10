@@ -30,6 +30,8 @@ BASIC USAGE
 
 After including jQuery and the FontUnstack javascript file, call `fontunstack()` on a jquery selector and a class will be added to each element with the font that is actually be used.
 
+**Note** this is a breaking change with how it worked before. You used to have to pass in the font stack you want to test as a string, now we're checking the `font-family` attribute directly.
+
 So for example, assuming this CSS:
 
     body {
@@ -39,14 +41,14 @@ So for example, assuming this CSS:
       font-family: "Gill Sans", "Helvetica Neue", Helvetica, sans-serif;
     }
 
-and assuming Gill Sans and Palatino were installed, this might result in:
+you would call fontunstack like so:
 
     $(document).ready(function() {
       $("body").fontunstack();
       $("h1").fontunstack();
     })
 
-Then the following classes would be applied:
+and assuming Gill Sans and Palatino were installed, this result in:
 
     <body class="set_in_palatino">
       <h1 class="set_in_gillsans">Heading</h1>
