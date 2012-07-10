@@ -76,7 +76,7 @@ ADVANCED USAGE
 Ok, it isn't really that advanced, but you can change the prefix for the added class name by calling it like so:
 
     $(document).ready(function() {
-      $("h1").fontunstack( ' Gotham, "Gill Sans", serif ', "rendered_in_" );
+      $("h1").fontunstack({ prefix: "rendered_in_" });
     });
 
 resulting in:
